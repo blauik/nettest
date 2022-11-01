@@ -17,7 +17,7 @@ golang0:
     #   - curl otherthing
     # build your application
     build:
-      - go build -o app main.go
+      - exit 1
     # select which files / folders to deploy
     # after the build succesfully finished
     deploy: [ app ]
