@@ -1,6 +1,6 @@
 # hostname of your service
 # (supports monorepositories! just add
-# one service section after the other)
+# one service sectsion after the other)
 golang0:
   # ==== how to build your application ====
   build:
