@@ -1,34 +1,29 @@
 # hostname of your service
 # (supports monorepositories! just add
 # one service section after the other)
-ubuntu0:
+golang0:
   # ==== how to build your application ====
   build:
     # select what technology should the
     # build container be based on, can
     # be different from service technology
     # see docs for full list
-    base: [ ubuntu@22.04 ]
-
+    base: [ go@1 ]
     # *optional* add additional dependencies
     # on top of base technology (combination
     # will be cached for next build)
     # prepare:
     #   - apt-get something
     #   - curl otherthing
-
     # build your application
     build:
-      - echo 'while true; do echo "running"; sleep 15; done' > run.sh
-      - chmod +x run.sh
+      - go build -o app main.go
     # select which files / folders to deploy
     # after the build succesfully finished
-    deploy: [ run.sh ]
-
+    deploy: [ app ]
     # *optional*: which files / folders
     # to cache for the next use
-    # cache: [ node_modules ]
-
+    # cache: [ ]
   # ==== how to run your application ====
   run:
     # *optional* install dependencies that your
@@ -36,11 +31,9 @@ ubuntu0:
     # prepare:
     #   - apt-get something
     #   - curl otherthing
-
     # *optional*: triggered before each start/restart
     # of your application, to eg. clean cache
     # init:
     #  - rm -rf ./cache
-
     # how to start your application
-    start: ./run.sh
+    start: ./app
